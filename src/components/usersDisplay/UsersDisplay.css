@@ -1,0 +1,13 @@
+.users_main{
+    /* border: 1px solid red; */
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    min-width: 400px;
+}
+
+.users_main_cards_container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

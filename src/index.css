@@ -1,0 +1,25 @@
+:root{
+  box-sizing: border-box;
+}
+*, ::before, ::after {
+  box-sizing: inherit;
+}
+* {margin: 0 }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  /* background-color: #cbe9fb; */
+  background-color:#e0e0e0
+}
+
+.main-app{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+main{
+  margin-top: 10px;
+  display: flex;
+  gap: 1rem;
+}
