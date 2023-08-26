@@ -1,0 +1,33 @@
+.form_input{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+}
+
+.form_input >input{
+    padding: 10px;
+    margin: 10px 0px;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.form_input> input:invalid[customDisplayError="true"] ~span{
+    display: block;
+}
+
+.form_input> input:invalid[customDisplayError="true"]{
+    border: 1px solid red;
+}
+
+.form_input> label{
+    font-size: 10;
+    color: gray;
+}
+
+.form_input> span{
+    color: red;
+    font-size: 12px;
+    padding: 3px;
+    display: none;
+}

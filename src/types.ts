@@ -16,7 +16,14 @@ export interface Address {
     zipcode: string;
     geo:     Geo;
 }
-
+export interface CreateNewUser{
+    name: string,
+    username: string,
+    email: string,
+    phone: string,
+    company: string,
+    street: string
+}
 export interface Geo {
     lat: string;
     lng: string;

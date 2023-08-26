@@ -1,0 +1,20 @@
+.form_input_container{
+    position: sticky;
+    top: 10px;
+    height: fit-content;
+/* border: 1px solid red; */
+}
+
+.form_input_container > button{
+    all: unset;
+    /* width: 100%; */
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+

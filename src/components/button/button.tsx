@@ -1,4 +1,3 @@
-
 import "./button.css"
 type Props = {
     callback: ()=>void
