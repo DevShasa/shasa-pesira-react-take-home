@@ -12,11 +12,11 @@
     border-radius: 5px;
 }
 
-.form_input> input:invalid[customDisplayError="true"] ~span{
+.form_input> input:invalid[customdisplayerror="true"] ~span{
     display: block;
 }
 
-.form_input> input:invalid[customDisplayError="true"]{
+.form_input> input:invalid[customdisplayerror="true"]{
     border: 1px solid red;
 }
 

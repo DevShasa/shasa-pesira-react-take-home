@@ -24,8 +24,10 @@ function App() {
       setUserData({...userData, [e.target.name]: e.target.value})
   }
 
-  const onCreateNewUser = ()=>{
-    dispatch(createUser(userData))
+  const onCreateNewUser = (e:React.FormEvent)=>{
+    e.preventDefault()
+    console.log("NEW DATA::", userData)
+    //dispatch(createUser(userData))
   }
 
   useEffect(()=>{

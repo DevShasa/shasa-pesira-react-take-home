@@ -1,8 +1,8 @@
 import type { CreateNewUser } from "../../types";
 import FormInput from "../input/FormInput";
-import "./Form.css"
+import "./Form.css";
 interface FormProps extends CreateNewUser {
-	submitAction: () => void;
+	submitAction: (e:React.FormEvent) => void;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	formlabel: string;
 }
@@ -36,7 +36,7 @@ const Form = (props: FormProps) => {
 			/>
 			<FormInput
 				value={props.email}
-        onChange={onChange}
+				onChange={onChange}
 				label="Email"
 				errorMsg="Enter a valid email"
 				name="email"
@@ -62,7 +62,7 @@ const Form = (props: FormProps) => {
 				placeholder="Company"
 				errorMsg="Company field should be more than five characters"
 				label="Company"
-				pattern="^[A-Za-z0-9 -]{5,}$"
+				pattern="^[A-Za-z0-9 \-]{5,}$"
 			/>
 			<FormInput
 				value={props.street}
@@ -72,11 +72,9 @@ const Form = (props: FormProps) => {
 				placeholder="Street"
 				errorMsg="Street field should be more than five characters"
 				label="Street"
-				pattern="^[A-Za-z0-9 -]{5,}$"
+				pattern="^[A-Za-z0-9 \-]{5,}$"
 			/>
-      <button type="submit">
-        {formlabel}
-      </button>
+			<button type="submit">{formlabel}</button>
 		</form>
 	);
 };

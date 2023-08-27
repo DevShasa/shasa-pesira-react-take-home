@@ -32,7 +32,7 @@ const FormInput = (props: Props) => {
                 value={value}
                 onBlur={handleFocus} // activate when user clicks away from input
                 // @ts-expect-error we will access this custom attribute in css to display validation errors
-                customDisplayError = {focussed.toString()} 
+                customdisplayerror = {focussed.toString()} 
             />
             <span>{errorMsg}</span>
 		</div>
