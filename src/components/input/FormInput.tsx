@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./FormInput.css"
 type Props = {
 	label: string;
@@ -7,17 +7,12 @@ type Props = {
     value: string
     name: string
     type: string
-    pattern?:string;
     placeholder: string
+    loading: boolean
 };
 
 const FormInput = (props: Props) => {
-	const [focussed, setFocussed] = useState(false);
-	const { label, onChange, errorMsg, value, name, type, placeholder, pattern } = props;
-
-    const handleFocus = ()=>{
-        setFocussed(true)
-    }
+	const { label, onChange, errorMsg, value, name, type, placeholder, loading  } = props;
 
 	return (
 		<div className="form_input">
@@ -26,15 +21,12 @@ const FormInput = (props: Props) => {
                 name={name}
                 type={type}
                 placeholder={placeholder}
-                pattern={pattern}
-                required
                 onChange={onChange} 
                 value={value}
-                onBlur={handleFocus} // activate when user clicks away from input
-                // @ts-expect-error we will access this custom attribute in css to display validation errors
-                customdisplayerror = {focussed.toString()} 
+                className={`${errorMsg.length !== 0 ? "inputError": loading ? "loading_state":""}`}
+
             />
-            <span>{errorMsg}</span>
+            {errorMsg.length !== 0 && <span>{errorMsg}</span>}
 		</div>
 	);
 };

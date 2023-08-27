@@ -12,13 +12,10 @@
     border-radius: 5px;
 }
 
-.form_input> input:invalid[customdisplayerror="true"] ~span{
-    display: block;
-}
 
-.form_input> input:invalid[customdisplayerror="true"]{
+.form_input> .inputError{
     border: 1px solid red;
-}
+} */
 
 .form_input> label{
     font-size: 10;
@@ -29,5 +26,4 @@
     color: red;
     font-size: 12px;
     padding: 3px;
-    display: none;
 }

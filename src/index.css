@@ -23,3 +23,7 @@ main{
   display: flex;
   gap: 1rem;
 }
+
+.loading_state{
+  background-color: rgb(172, 172, 172) !important;
+}
