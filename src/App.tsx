@@ -44,8 +44,8 @@ function App() {
       const {error, ...inputErrors} = checkErrors
       setErrors(inputErrors)
     }else{
-      setUserData(initialUserData)
       dispatch(createUser(userData))
+      setUserData(initialUserData)
     }
   }
 

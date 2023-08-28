@@ -6,6 +6,7 @@ interface InitialStateType{
     isLoading: boolean;
     newUserLoading:boolean;
     deleteUserLoading: boolean
+    editUserLoading: boolean
     error: {
         errorPresent: boolean;
         errorMessage: string;
@@ -19,6 +20,7 @@ const initialState:InitialStateType ={
     isLoading: true,
     newUserLoading: false,
     deleteUserLoading: false,
+    editUserLoading: false,
     error: {
         errorPresent:false,
         errorMessage:""
@@ -71,6 +73,44 @@ export const createUser =  createAsyncThunk('users/createUser', async(newUserDat
     }
 })
 
+interface IeditUser extends CreateNewUser{
+    id: number
+}
+
+export const editUser =  createAsyncThunk('users/edituser', async(newUserData:IeditUser, thunkApi)=>{
+    const newUser = {
+        name:newUserData.name,
+        username: newUserData.username,
+        email: newUserData.email,
+        phone: newUserData.phone,
+        company:{
+            name: newUserData.company
+        },
+        address:{
+            street: newUserData.street
+        }
+    }
+    try {
+        const res = await fetch(`https://jsonplaceholder.typicode.com/users/${newUserData.id}`,{
+            method:"PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:  JSON.stringify(newUser)
+        })
+
+        if(res.status === 200){
+            const data = await res.json()
+            console.log("MODIFIED USER API RESPONSE", data)
+            return data
+        }else{
+            throw new Error("Could not edit user")
+        }
+    } catch (error) {
+        console.log("ERROR EDITING  NEW USER",error)
+        return thunkApi.rejectWithValue("Could not create edit user")
+    }
+})
 
 export const deleteUser = createAsyncThunk("users/delete", async(id:number, thunkApi)=>{
     try{
@@ -136,6 +176,26 @@ const userSlice = createSlice({
             .addCase(deleteUser.rejected, (state)=>{
                 state.deleteUserLoading = false
                 toast.error("Could not delete user")
+            })
+            .addCase(editUser.pending, (state)=>{
+                state.editUserLoading = true
+            })
+            .addCase(editUser.fulfilled, (state, action)=>{
+                state.editUserLoading = false
+                const updatedList = state.users.map(user =>{
+                    if(user.id === action.payload.id){
+                        return action.payload
+                    }else{
+                        return user
+                    }
+                })
+                // state.users.filter(user => user.id !== action?.payload?.id)
+                state.users = updatedList
+                toast.success("Sucessfuly modified user details")
+            })
+            .addCase(editUser.rejected, (state)=>{
+                state.editUserLoading = false
+                toast.error("There was an error modifiying user details")
             })
     }
 })

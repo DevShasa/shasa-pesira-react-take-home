@@ -3,7 +3,9 @@ import type { CreateNewUser, Users } from "../../types";
 import { closeModal } from "../../redux/dataSlices/modalSlice";
 import validate from "../../utils/validateInputs";
 import Form from "../form/Form";
-import { useAppDispatch } from "../../hooks/storeHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/storeHooks";
+import "./Modal.css";
+import { editUser } from "../../redux/dataSlices/userSlice";
 
 const initialUserData = {
 	name: "",
@@ -20,6 +22,7 @@ type Props = {
 
 const Modal = (props: Props) => {
     const dispatch = useAppDispatch()
+    const {editUserLoading} = useAppSelector((store) => store.users)
 	const { user } = props;
 	const [userData, setUserData] = useState<CreateNewUser>({
         name: user.name,
@@ -35,7 +38,7 @@ const Modal = (props: Props) => {
         dispatch(closeModal())
     }
 
-	const editUser = (e: React.FormEvent) => {
+	const edit =  (e: React.FormEvent) => {
 		e.preventDefault();
 		setErrors(initialUserData);
 		const checkErrors = validate(userData);
@@ -46,7 +49,9 @@ const Modal = (props: Props) => {
 			setErrors(inputErrors);
 		}else{
             // pass data to thunk
+            dispatch(editUser({id:user.id, ...userData}))
             setUserData(initialUserData)
+            closeTheModal()
         }
 	};
 
@@ -57,7 +62,9 @@ const Modal = (props: Props) => {
 	return (
         <div className="modal_container">
             <div className="modal_form">
-                <button className="close_modal_sign" onClick={closeTheModal}>CLOSE</button>
+                <div className="modal_close_button">
+                    <button className="close_modal_sign" onClick={closeTheModal}>CLOSE</button>
+                </div>
                 <Form 
                     name={userData.name}
                     username={userData.username}
@@ -65,11 +72,11 @@ const Modal = (props: Props) => {
                     phone={userData.phone}
                     company={userData.company}
                     street={userData.street}
-                    submitAction={editUser}
+                    submitAction={edit}
                     onChange={onChange}
-                    formlabel="Create new User"
+                    formlabel={`Edit User Details`}
                     errors = {errors}
-                    loading= {true}
+                    loading= {editUserLoading}
                 />
             </div>
         </div>
