@@ -55,3 +55,20 @@ Loading indicator
 Edit user modal 
 
 ![editModal](./markdownImages/edit%20user%20modal.png)
+
+
+Form Validation
+
+
+![validation](./markdownImages/validationn.png)
+
+## Project folders
+- The core files are in the src folder, this is the build target when building the app for production
+- Inside the src folder there are several subfolders
+   - Components folder holds the individual jsx components that make up the component such as the usercard, and form
+   - Hooks folder holds react hooks used by different components
+   - Redux folder contains logic for the global redux store as well as the data slices representing different parts of teh application
+   - utils folder for non jsx code that is useful and might be used across multiple components
+- Each component has its own styling, with the global styles in index.css
+- The main entrypoint of the app is Main.tsx which imports the global redux store and then injects App.tsx into the dom
+
