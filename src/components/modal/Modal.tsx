@@ -51,7 +51,6 @@ const Modal = (props: Props) => {
             // pass data to thunk
             dispatch(editUser({id:user.id, ...userData}))
             setUserData(initialUserData)
-            closeTheModal()
         }
 	};
 

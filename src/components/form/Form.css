@@ -18,3 +18,13 @@
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+    .form_input_container{
+      position: static;
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+    }
+  }

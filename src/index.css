@@ -24,6 +24,12 @@ main{
   gap: 1rem;
 }
 
+@media (max-width: 768px) {
+  main {
+    flex-direction: column-reverse; /* Change flex direction to column */
+  }
+}
+
 .loading_state{
   background-color: rgb(172, 172, 172) !important;
 }

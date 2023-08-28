@@ -1,6 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import type { Users, CreateNewUser } from "../../types";
 import toast from "react-hot-toast";
+import { closeModal } from "./modalSlice";
 interface InitialStateType{
     users: Users[];
     isLoading: boolean;
@@ -101,8 +102,11 @@ export const editUser =  createAsyncThunk('users/edituser', async(newUserData:Ie
 
         if(res.status === 200){
             const data = await res.json()
-            console.log("MODIFIED USER API RESPONSE", data)
-            return data
+            thunkApi.dispatch(closeModal())
+            return {
+                id: newUserData.id,
+                data
+            }
         }else{
             throw new Error("Could not edit user")
         }
@@ -159,6 +163,7 @@ const userSlice = createSlice({
             .addCase(createUser.fulfilled, (state, action)=>{
                 state.newUserLoading = false
                 toast(`New user created`)
+                action.payload.id = state.users.length +1
                 state.users.unshift(action.payload)
             })
             .addCase(createUser.rejected, (state)=>{
@@ -184,12 +189,11 @@ const userSlice = createSlice({
                 state.editUserLoading = false
                 const updatedList = state.users.map(user =>{
                     if(user.id === action.payload.id){
-                        return action.payload
+                        return {...action.payload.data, id:action.payload.id}
                     }else{
                         return user
                     }
                 })
-                // state.users.filter(user => user.id !== action?.payload?.id)
                 state.users = updatedList
                 toast.success("Sucessfuly modified user details")
             })
