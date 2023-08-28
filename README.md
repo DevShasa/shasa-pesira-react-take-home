@@ -1,27 +1,57 @@
-# React + TypeScript + Vite
+# Shasa, Pesira React take home
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The project has been bootrstrapped using vite
 
-Currently, two official plugins are available:
+To launch the application first make sure Node is installed on your computer. The instructions for launching node can be found at https://nodejs.org/en
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+After installing node, launch the terminal then copy the command 
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```
+git clone https://github.com/DevShasa/shasa-pesira-react-take-home.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Navigate to the root of the project and then install dependencies with
+
+```
+npm install
+```
+
+After all the dependencies have installed launch the application with the command
+
+```
+npm run dev
+```
+
+After which you should see 
+
+![vite](./markdownImages//vite.png)
+
+The application is live at   `http://localhost:5173/`
+
+Navigate to this url
+
+## Technologies used
+- Vite, for project bootstrap
+- Typescript, adding extra type safety
+- Redux, for global state management
+- Notifications using react hot toast
+
+Homepage
+
+![homepage](./markdownImages/homepage.png)
+
+
+Error Notification on api failiure
+
+
+![error](./markdownImages/error.png)
+
+
+Loading indicator
+
+![loading](./markdownImages//LOADING.png)
+
+
+Edit user modal 
+
+![editModal](./markdownImages/edit%20user%20modal.png)

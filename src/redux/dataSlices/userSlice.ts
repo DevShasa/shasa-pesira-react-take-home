@@ -32,8 +32,14 @@ const initialState:InitialStateType ={
 export const getUsers = createAsyncThunk('users/getUsers', async(_, thunkApi)=>{
     try {
         const res = await fetch('https://jsonplaceholder.typicode.com/users')
-        const users = await res.json()
-        return users
+
+        if(res.status !== 200){
+            throw new Error
+        }else{
+            const users = await res.json()
+            return users
+        }
+
     } catch (error) {
         // this is where we would log error to sentry or other logging services 
         return thunkApi.rejectWithValue("Error fetching the users")
